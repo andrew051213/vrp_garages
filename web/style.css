@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.active-bg {
+    background-image: linear-gradient(180deg, #020C18 0%, #031628 83.96%);
+}
+
+.inactive-bg {
+    background: linear-gradient(180deg, #0A1117 0%, #091017 80.73%);
+}
+
+.scrollBar {
+    overflow-y: scroll;
+}
+
+.scrollBar::-webkit-scrollbar {
+    display: none;
+}
+
+input {
+    outline: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.8s ease-in-out;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage UI - andrew051211</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="nui://game/ui/jquery.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v6.4.0/css/pro.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="main-garages" class="absolute left-0 top-0 bottom-0 right-0 bg-gradient-to-r from-black to-[#020C16] w-full h-full scrollBar transition-all duration-300 fade-in" v-if="active">
+        <div class="flex flex-col justify-start items-center w-full h-full">
+            <div class="flex justify-between items-center w-full mt-16 z-50">
+                <div class="flex-1"></div>
+
+                <div class="flex justify-center items-center flex-col">
+                    <img src="assets/LOGO.png" draggable="false" class="w-[106px] h-[106px]">
+
+                    <div class="text-white font-bold">GARAGE</div>
+
+                    <div class="text-white/25">TGHX SHOP</div>
+                </div>
+
+                <div class="flex justify-center items-center flex-row gap-5 flex-1">
+                    <div class="p-8 bg-[#0A0D16] rounded-lg cursor-pointer">
+                        <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.07143 1.125V0H7.5H13.9286V1.125H15V9.5625V18H13.3929L7.5 12.375L1.07143 18H0V16.875V1.125H1.07143Z" fill="#2F3339" />
+                        </svg>
+                    </div>
+
+                    <input type="text" @input="onChange($event.target.value)" v-model="searchedVehicles" placeholder="Search..." class="bg-[#0F141C] w-[336px] h-[80px] text-center rounded-lg text-white" />
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center w-full h-full absolute top-0 left-0">
+                <div class="absolute top-1/2 left-0 -ml-40 transform -translate-y-1/2">
+                    <div class="w-[303px] h-[645px] bg-[#003585] opacity-30 rounded-full blur-[100px]"></div>
+                </div>
+    
+                <div class="absolute top-1/2 right-0 -mr-40 transform -translate-y-1/2">
+                    <div class="w-[303px] h-[645px] bg-[#003585] opacity-30 rounded-full blur-[100px]"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 py-6 gap-6 z-50 transition-color duration-300">
+                <!-- <div :class="[activeVehicleName === vehicle.name ? 'active-bg' : 'inactive-bg', 'rounded-lg w-[506px] h-full cursor-pointer']" v-for="vehicle in filteredVehicles" :key="vehicle.name" @click="onSelect(vehicle)"> -->
+                <div class="inactive-bg rounded-lg w-[506px] h-full" v-for="vehicle in filteredVehicles" :key="vehicle.name">
+                    <div class="flex flex-col p-4">
+                        <div class="text-cyan-500">{{ vehicle.name }}</div>
+
+                        <div class="text-sm text-white/30">Plate Number: 60XD</div>
+                    </div>
+
+                    <div class="flex flex-col justify-center items-center">
+                        <img :src="vehicle.image || `https://docs.fivem.net/vehicles/${vehicle['spawnCode']}.webp`" draggable="false" class="w-[202px] h-[132px] max-w-[204px] max-h-[204px] py-6 my-6">
+
+                        <button class="p-7 w-full h-full bg-[#11171D] rounded-lg text-white cursor-pointer transition-all duration-300 hover:scale-[1.01]" @click.stop="spawnVehicle(vehicle)">SPAWN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
