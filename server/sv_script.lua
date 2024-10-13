@@ -23,7 +23,7 @@ AddEventHandler("onResourceStart", function(resource)
         end
 
         Citizen['SetTimeout'](1000, function()
-            TriggerClientEvent("vrp-garages:initializeGarages", -1, cfg['garages'])
+            TriggerClientEvent("vrp-garages:initializeGarages", -1, cfg['garages'], cfg['garage_types'])
         end)
     end
 end)

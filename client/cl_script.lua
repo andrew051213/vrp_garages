@@ -1,7 +1,8 @@
 local tables = {}
 
-RegisterNetEvent("vrp-garages:initializeGarages", function(data)
-    tables['garages'] = data
+RegisterNetEvent("vrp-garages:initializeGarages", function(garages, garage_types)
+    tables['garages'] = garages
+    tables['garage_types'] = garage_types
 end)
 
 RegisterNetEvent("vrp-garages:sendUIMessage", function (...)
@@ -36,6 +37,44 @@ RegisterNuiCallback("vrp-garages:spawnVehicle", function(data)
     SetVehicleDirtLevel(vehicle, 0.0)
 
     SetVehicleFixed(vehicle)
+end)
+
+Citizen['CreateThread'](function()
+    Citizen['Wait'](1000)
+    
+    if not tables['garages'] or not tables['garage_types'] then
+        return
+    end
+
+    for i = 1, #tables['garages'] do
+        local garage = tables['garages'][i]
+
+        if garage then
+            local garageType = garage[1]
+            local coords = garage[2]
+
+            if type(coords) ~= "vector3" then
+                goto skip_garage
+            end
+
+            local garageTypeConfig = tables['garage_types'][garageType]
+
+            if garageTypeConfig and garageTypeConfig['_config'] then
+                local blip = AddBlipForCoord(coords['x'], coords['y'], coords['z'])
+
+                SetBlipSprite(blip, garageTypeConfig['_config']['blipid'])
+                SetBlipDisplay(blip, 4)
+                SetBlipScale(blip, 0.7)
+                SetBlipColour(blip, garageTypeConfig['_config']['blipcolor'] or 3)
+                SetBlipAsShortRange(blip, true)
+                BeginTextCommandSetBlipName("STRING")
+                AddTextComponentString(garageTypeConfig['_config']['text'] or "Garage")
+                EndTextCommandSetBlipName(blip)
+            end
+        end
+        
+        ::skip_garage::
+    end
 end)
 
 Citizen['CreateThread'](function()
