@@ -13,7 +13,7 @@ A simple and customizable garage script for FiveM using the vRP framework.
 
 - [ ] Add vehicle ownership check
 - [ ] Implement vehicle storage and retrieval system
-- [ ] Add garage blips on the map
+- [x] Add garage blips on the map
 
 ## Installation
 
