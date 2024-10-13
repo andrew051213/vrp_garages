@@ -17,7 +17,7 @@ A simple and customizable garage script for FiveM using the vRP framework.
 
 ## Installation
 
-1. Download the latest release from the [GitHub repository](https://github.com/yourusername/vrp_garages)
+1. Download the latest release from the [GitHub repository](https://github.com/andrew051213/vrp_garages)
 2. Extract the `vrp_garages` folder to your FiveM server's `resources` directory
 3. Add the following line to your `server.cfg`:
    ```
